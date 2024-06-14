@@ -1,30 +1,25 @@
-# React + TypeScript + Vite
+# Registrační formulář
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. Do projektu nainstalujte knihovnu Formik.
+2. Vytvořte komponentu, která bude obsahovat registrační formulář do e-shopu. Formulář bude obsahovat:
 
-Currently, two official plugins are available:
+- ### Registrační údaje
+  - email - povinné pole, max 30 znaků
+  - heslo - povinné pole, max 50 znaků
+  - potvrzení heslo - povinné pole, max 50 znaků
+  - telefon - povinné pole, max 20 znaků
+- ### Fakturační údaje
+  - jméno - jméno a přijmení nebo název firmy, volitelné pole, max 40 znaků
+  - ulice - volitelné pole, max 30 znaků
+  - město - volitelné pole, max 20 znaků
+  - psč - volitelné pole, max 6 znaků
+- ### Ostatní
+  - preferované odběrné místo - výběr z alespoň 5 českých měst (select)
+  - odběr newsletteru - dva radiobuttony, ano/ne
+  - poznámka - textarea pro libovolný komentář, nepovinné pole, max. 100 znaků
+- ### Souhlas
+  - souhlas se zpracováním osobních údajů - checkbox, musí být zaškrtnutý, jinak nelze uživatele zaregistrovat
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+3. Nastavte pole tak, aby se pro všechna pole správně provedla validace.
+4. Při odeslání formuláře pouze hodnoty vypište do konzole.
+5. Volitelně se pokuste formulář hezky nastylovat.
