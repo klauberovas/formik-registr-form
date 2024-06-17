@@ -9,6 +9,8 @@ interface RegistrationForm {
   zipCode: string
   preferCity: string
   comment: string
+  agree: string
+  newsletter: string
 }
 
 interface ErrorsForm {
@@ -22,6 +24,8 @@ interface ErrorsForm {
   zipCode?: string
   preferCity?: string
   comment?: string
+  agree?: string
+  newsletter?: string
 }
 
 type FormKeys = keyof RegistrationForm

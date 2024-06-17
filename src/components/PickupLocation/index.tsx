@@ -1,10 +1,9 @@
 import { Field } from 'formik'
-import './index.css'
 
 const PickupLocation = () => {
   return (
     <div className="form-location">
-      <label htmlFor="preferCity" className="label--bottom">
+      <label htmlFor="preferCity" className="margin--right">
         Choose your collection point:
       </label>
       <Field name="preferCity" as="select">

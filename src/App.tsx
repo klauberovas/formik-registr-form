@@ -5,6 +5,8 @@ import RegistrationForm from './components/RegistrationForm'
 import BillForm from './components/BillInformation'
 import PickupLocation from './components/PickupLocation'
 import Textarea from './components/Textarea'
+import CheckboxAgree from './components/CheckboxAgree'
+import Newsletter from './components/Newsletter'
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           zipCode: '',
           preferCity: '',
           comment: '',
+          agree: '',
+          newsletter: '',
         }}
         validate={validate}
         onSubmit={(values, { setSubmitting }) => {
@@ -33,6 +37,8 @@ function App() {
           <BillForm />
           <PickupLocation />
           <Textarea />
+          <CheckboxAgree />
+          <Newsletter />
           <button type="submit" className="button">
             Submit
           </button>
