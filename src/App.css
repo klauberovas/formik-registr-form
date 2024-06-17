@@ -8,8 +8,13 @@
 
 .form-container {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  justify-content: space-around;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.input-container {
+  margin-bottom: 0.8rem;
 }
 
 .form__label {
@@ -22,6 +27,7 @@
 }
 
 .button {
+  flex-basis: 100%;
   padding: 10px 30px;
   background-color: #9198e5;
   border-width: 0;

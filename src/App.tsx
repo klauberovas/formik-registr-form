@@ -2,7 +2,9 @@ import './App.css'
 import { Formik, Form } from 'formik'
 import { validate } from './validate'
 import RegistrationForm from './components/RegistrationForm'
-import BillInformation from './components/BillInformation'
+import BillForm from './components/BillInformation'
+import PickupLocation from './components/PickupLocation'
+import Textarea from './components/Textarea'
 
 function App() {
   return (
@@ -13,6 +15,12 @@ function App() {
           password: '',
           confirmPassword: '',
           phoneNumber: '',
+          name: '',
+          street: '',
+          city: '',
+          zipCode: '',
+          preferCity: '',
+          comment: '',
         }}
         validate={validate}
         onSubmit={(values, { setSubmitting }) => {
@@ -22,7 +30,9 @@ function App() {
       >
         <Form className="form-container">
           <RegistrationForm />
-          {/* <BillInformation /> */}
+          <BillForm />
+          <PickupLocation />
+          <Textarea />
           <button type="submit" className="button">
             Submit
           </button>

@@ -3,6 +3,12 @@ interface RegistrationForm {
   password: string
   confirmPassword: string
   phoneNumber: string
+  name: string
+  street: string
+  city: string
+  zipCode: string
+  preferCity: string
+  comment: string
 }
 
 interface ErrorsForm {
@@ -10,33 +16,73 @@ interface ErrorsForm {
   password?: string
   confirmPassword?: string
   phoneNumber?: string
+  name?: string
+  street?: string
+  city?: string
+  zipCode?: string
+  preferCity?: string
+  comment?: string
+}
+
+type FormKeys = keyof RegistrationForm
+type ErrorKeys = keyof ErrorsForm
+
+const validateLength = (field: string, maxLen: number) => {
+  if (field && field.length > maxLen) {
+    return `Musí být dlouhé maximálně ${maxLen} znaků`
+  }
+}
+
+const checkPassword = (password: string, confirmPassword: string | null) => {
+  if (password !== confirmPassword) {
+    return 'Tvoje hesla se neshodují'
+  }
 }
 
 export const validate = (values: RegistrationForm) => {
   const errors: ErrorsForm = {}
 
-  if (!values.email) {
-    errors.email = '*Povinné pole'
-  } else if (values.email.length > 30) {
-    errors.email = 'Musí být dlouhé maximálně 30 znaků'
+  //Povinná pole
+  const requieredFields: FormKeys[] = [
+    'email',
+    'password',
+    'confirmPassword',
+    'phoneNumber',
+    'preferCity',
+  ]
+
+  requieredFields.forEach((field) => {
+    if (!values[field]) {
+      errors[field] = '*Povinné pole'
+    }
+  })
+
+  //Pole s max.délkou
+  const fieldsWithMaxLength: { key: FormKeys; maxLen: number }[] = [
+    { key: 'email', maxLen: 30 },
+    { key: 'password', maxLen: 50 },
+    { key: 'confirmPassword', maxLen: 50 },
+    { key: 'phoneNumber', maxLen: 20 },
+    { key: 'name', maxLen: 40 },
+    { key: 'street', maxLen: 40 },
+    { key: 'city', maxLen: 20 },
+    { key: 'zipCode', maxLen: 6 },
+    { key: 'preferCity', maxLen: 100 },
+  ]
+
+  fieldsWithMaxLength.forEach(({ key, maxLen }) => {
+    const lengthError = validateLength(values[key], maxLen)
+    if (lengthError) {
+      errors[key as ErrorKeys] = lengthError
+    }
+  })
+
+  //Kontrola hesla
+  const passwordError = checkPassword(values.password, values.confirmPassword)
+  if (passwordError) {
+    errors.password = passwordError
+    errors.confirmPassword = passwordError
   }
 
-  if (!values.password) {
-    errors.password = '*Povinné pole'
-  } else if (values.password.length > 50) {
-    errors.password = 'Musí být dlouhé maximálně 50 znaků'
-  }
-
-  if (!values.confirmPassword) {
-    errors.confirmPassword = '*Povinné pole'
-  } else if (values.confirmPassword.length > 50) {
-    errors.confirmPassword = 'Musí být dlouhé maximálně 50 znaků'
-  }
-
-  if (!values.phoneNumber) {
-    errors.phoneNumber = '*Povinné pole'
-  } else if (values.phoneNumber.length > 20) {
-    errors.phoneNumber = 'Musí být dlouhé maximálně 20 znaků'
-  }
   return errors
 }
